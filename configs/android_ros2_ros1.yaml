@@ -1,0 +1,8 @@
+name: android_gateway
+internal:
+  middleware: ros2
+external:
+  middleware: ros1
+routes:
+  outbound:
+    - { topic: /RMFchatter, type: std_msgs/String }
