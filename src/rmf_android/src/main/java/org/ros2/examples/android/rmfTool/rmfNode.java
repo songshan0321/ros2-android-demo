@@ -51,4 +51,22 @@ public class rmfNode extends BaseComposableNode {
     msg.setData("right");
     this.publisher.publish(msg);
   }
+  public void forward() {
+    Log.d(logtag, "rmfNode::forward()");
+    std_msgs.msg.String msg = new std_msgs.msg.String();
+    msg.setData("forward");
+    this.publisher.publish(msg);
+  }
+  public void backward() {
+    Log.d(logtag, "rmfNode::backward()");
+    std_msgs.msg.String msg = new std_msgs.msg.String();
+    msg.setData("backward");
+    this.publisher.publish(msg);
+  }
+  public void stop() {
+      Log.d(logtag, "rmfNode::stop()");
+      std_msgs.msg.String msg = new std_msgs.msg.String();
+      msg.setData("stop");
+      this.publisher.publish(msg);
+  }
 }

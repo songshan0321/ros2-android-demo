@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Aug 13 17:27:14 MYT 2018
+#Tue Aug 14 17:21:41 MYT 2018
 122.file=/home/rmf/ros2_android_ws/src/ros2_java/rmf_android/build/intermediates/transforms/stripDebugSymbol/debug/folders/2000/1f/main/lib/armeabi-v7a/libstd_msgs_msg_u_int8_multi_array__jni__rosidl_typesupport_introspection_c.so
 60.set=NATIVE_RESOURCE
 129.file=/home/rmf/ros2_android_ws/src/ros2_java/rmf_android/build/intermediates/transforms/stripDebugSymbol/debug/folders/2000/1f/main/lib/armeabi-v7a/librcl_interfaces_srv__get_parameters__request__jni__rosidl_typesupport_introspection_c.so

@@ -17,8 +17,9 @@ package org.ros2.examples.android.rmfTool;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -38,12 +39,18 @@ public class rmfActivity extends ROSActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
 
-    // Create two button listener
+    // Create 4 button listener
     Button buttonLeft = (Button)findViewById(R.id.buttonLeft);
-    buttonLeft.setOnClickListener(leftListener);
+    buttonLeft.setOnTouchListener(leftListener);
 
     Button buttonRight = (Button)findViewById(R.id.buttonRight);
-    buttonRight.setOnClickListener(rightListener);
+    buttonRight.setOnTouchListener(rightListener);
+
+    Button buttonUp = (Button)findViewById(R.id.buttonUp);
+    buttonUp.setOnTouchListener(upListener);
+
+    Button buttonDown = (Button)findViewById(R.id.buttonDown);
+    buttonDown.setOnTouchListener(downListener);
 
     RCLJava.rclJavaInit();
 
@@ -51,37 +58,126 @@ public class rmfActivity extends ROSActivity {
     rmfNode = new rmfNode("android_rmf_node", "RMFChatter");
   }
 
-  // Create an anonymous implementation of OnClickListener
-  private OnClickListener leftListener = new OnClickListener() {
-    public void onClick(final View view) {
-      Log.d(logtag, "onClick() called - left button");
-      Toast
-          .makeText(rmfActivity.this, "The Go Left button was clicked.",
-                    Toast.LENGTH_LONG)
-          .show();
-      Log.d(logtag, "onClick() ended - left button");
+  // Create an anonymous implementation of onTouchListener
+  private OnTouchListener leftListener = new OnTouchListener() {
+    public boolean onTouch(final View view, MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
 
-      getExecutor().addNode(rmfNode);
-      move("left");
-      getExecutor().removeNode(rmfNode);
+            Log.d(logtag, "onTouch() called - left button");
+            Toast
+                    .makeText(rmfActivity.this, "The Turn Left button was touched.",
+                            Toast.LENGTH_LONG)
+                    .show();
+            getExecutor().addNode(rmfNode);
+            move("left");
+            getExecutor().removeNode(rmfNode);
+            return true;
+        }
+        else if(event.getAction() == MotionEvent.ACTION_UP){
+
+            Log.d(logtag, "onTouch() ended - left button");
+            Toast
+                    .makeText(rmfActivity.this, "The Turn Left button was touched.",
+                            Toast.LENGTH_LONG)
+                    .show();
+            getExecutor().addNode(rmfNode);
+            move("stop");
+            getExecutor().removeNode(rmfNode);
+            return false;
+        }
+        return false;
     }
   };
 
-  // Create an anonymous implementation of OnClickListener
-  private OnClickListener rightListener = new OnClickListener() {
-    public void onClick(final View view) {
-      Log.d(logtag, "onClick() called - right button");
-      Toast
-          .makeText(rmfActivity.this, "The Go Right button was clicked.",
-                    Toast.LENGTH_LONG)
-          .show();
-      Log.d(logtag, "onClick() ended - right button");
+    private OnTouchListener rightListener = new OnTouchListener() {
+        public boolean onTouch(final View view, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
 
-      getExecutor().addNode(rmfNode);
-      move("right");
-      getExecutor().removeNode(rmfNode);
-    }
-  };
+                Log.d(logtag, "onTouch() called - right button");
+                Toast
+                        .makeText(rmfActivity.this, "The Turn Right button was touched.",
+                                Toast.LENGTH_LONG)
+                        .show();
+                getExecutor().addNode(rmfNode);
+                move("right");
+                getExecutor().removeNode(rmfNode);
+                return true;
+            }
+            else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                Log.d(logtag, "onTouch() ended - right button");
+                Toast
+                        .makeText(rmfActivity.this, "The Turn right button was touched.",
+                                Toast.LENGTH_LONG)
+                        .show();
+                getExecutor().addNode(rmfNode);
+                move("stop");
+                getExecutor().removeNode(rmfNode);
+                return false;
+            }
+            return false;
+        }
+    };
+
+    private OnTouchListener upListener = new OnTouchListener() {
+        public boolean onTouch(final View view, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                Log.d(logtag, "onTouch() called - forward button");
+                Toast
+                        .makeText(rmfActivity.this, "The Forward button was touched.",
+                                Toast.LENGTH_LONG)
+                        .show();
+                getExecutor().addNode(rmfNode);
+                move("forward");
+                getExecutor().removeNode(rmfNode);
+                return true;
+            }
+            else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                Log.d(logtag, "onTouch() ended - forward button");
+                Toast
+                        .makeText(rmfActivity.this, "The Forward button was touched.",
+                                Toast.LENGTH_LONG)
+                        .show();
+                getExecutor().addNode(rmfNode);
+                move("stop");
+                getExecutor().removeNode(rmfNode);
+                return false;
+            }
+            return false;
+        }
+    };
+
+    private OnTouchListener downListener = new OnTouchListener() {
+        public boolean onTouch(final View view, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                Log.d(logtag, "onTouch() called - backward button");
+                Toast
+                        .makeText(rmfActivity.this, "The Backward button was touched.",
+                                Toast.LENGTH_LONG)
+                        .show();
+                getExecutor().addNode(rmfNode);
+                move("backward");
+                getExecutor().removeNode(rmfNode);
+                return true;
+            }
+            else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                Log.d(logtag, "onTouch() ended - backward button");
+                Toast
+                        .makeText(rmfActivity.this, "The Backward button was touched.",
+                                Toast.LENGTH_LONG)
+                        .show();
+                getExecutor().addNode(rmfNode);
+                move("stop");
+                getExecutor().removeNode(rmfNode);
+                return false;
+            }
+            return false;
+        }
+    };
 
   private void move(String direction){
       if (direction == "left"){
@@ -89,6 +185,15 @@ public class rmfActivity extends ROSActivity {
       }
       else if (direction == "right"){
           rmfNode.right();
+      }
+      else if (direction == "forward"){
+          rmfNode.forward();
+      }
+      else if (direction == "backward"){
+          rmfNode.backward();
+      }
+      else if (direction == "stop"){
+          rmfNode.stop();
       }
       else{
           Log.d(logtag, "invalid direction msg");
