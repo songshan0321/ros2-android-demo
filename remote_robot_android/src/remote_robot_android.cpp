@@ -5,13 +5,11 @@
 
 serial::Serial ser;
 
-std::string data;
-
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
   // Read in msg
-  data = msg->data;
-  ROS_INFO("I heard: [%s]", data);
+  const char* data = msg->data.c_str();
+  //ROS_INFO("I heard: [%s]", data);
 
   // Serial write
 
