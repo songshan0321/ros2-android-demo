@@ -5,4 +5,4 @@ external:
   middleware: ros1
 routes:
   outbound:
-    - { topic: /RMFchatter, type: std_msgs/String }
+    - { topic: /RMFChatter, type: std_msgs/String }

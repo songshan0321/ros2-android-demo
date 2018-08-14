@@ -4,7 +4,6 @@ project(move_robot_android)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
-  rmf_msgs
   serial
   roslaunch
 )

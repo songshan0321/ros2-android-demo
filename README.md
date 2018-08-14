@@ -35,7 +35,7 @@ On **robot's computer** (10.10.1.206),
 SSH into robot's computer:
 
 ```bash
-ssh rmf@10.10.1.206
+ssh rmf@10.10.7.150
 ```
 
 Run subscriber on robot:
@@ -43,7 +43,7 @@ Run subscriber on robot:
 ```bash
 . ~/catkin_ws/devel/setup.bash
 sudo chmod 777 /dev/ttyACM0
-rosluanch move_robot_android car.launch
+roslaunch move_robot_android car.launch
 ```
 
 

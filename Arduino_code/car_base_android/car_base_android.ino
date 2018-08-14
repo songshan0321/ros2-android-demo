@@ -103,7 +103,7 @@ void loop() {
     if (incomingByte == 0){
       forward(100,1000);
       halt(500);
-      turnLeft(100,1500);
+      turnLeft(100,1200);
       halt(500);
       forward(100,1000);
       halt(500);
@@ -113,7 +113,7 @@ void loop() {
     if (incomingByte == 1){
       forward(100,1000);
       halt(500);
-      turnRight(100,1500);
+      turnRight(100,1200);
       halt(500);
       forward(100,1000);
       halt(500);
