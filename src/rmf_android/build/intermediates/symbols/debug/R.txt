@@ -1,0 +1,7 @@
+int drawable ic_launcher 0x7f020000
+int id buttonLeft 0x7f060000
+int id buttonRight 0x7f060001
+int layout main 0x7f040000
+int mipmap gt_ic_launcher 0x7f030000
+int mipmap ic_launcher 0x7f030001
+int string app_name 0x7f050000

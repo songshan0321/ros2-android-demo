@@ -35,7 +35,7 @@ On **robot's computer** (10.10.1.206),
 SSH into robot's computer:
 
 ```bash
-ssh rmf@10.10.7.150
+ssh demo@10.10.7.186
 ```
 
 Run subscriber on robot:
@@ -50,7 +50,7 @@ roslaunch move_robot_android car.launch
 
 ### Step2: translate ROS 2 messages to ROS 1 messages
 
-On **server computer**, source the SOSS libraries and start a SOSS instance:
+On another terminal, source the SOSS libraries and start a SOSS instance:
 
 ```bash
 . ~/rmf/build/soss/setup.bash
@@ -63,3 +63,15 @@ cd ~/rmf/src/soss/soss
 ### Step3: Open RMFTool Android App on your phone
 
 Start control robotcar. Have fun!
+
+
+
+### Step4: (Optional) Echo msg on RMFChatter
+
+On **server computer**, echo RMFChatter topic:
+
+```bash
+. ~/rmf/build/ros2/install/setup.bash
+ros2 topic echo /RMFChatter
+```
+

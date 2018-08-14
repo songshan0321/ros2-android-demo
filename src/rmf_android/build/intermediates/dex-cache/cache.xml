@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/rmf/ros2_android_ws/install_isolated/std_msgs/share/std_msgs/java/std_msgs_messages.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2e46868e4d6a54f447ae9d76717937ccf117c6bf">
+        <dex dex="/home/rmf/ros2_android_ws/src/ros2_java/rmf_android/build/intermediates/pre-dexed/debug/std_msgs_messages_09d3dde536c4ae029b516665fb17c2af1e3a2b5b.jar" />
+    </item>
+
+</items>

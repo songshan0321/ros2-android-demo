@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="output"><source path="/home/rmf/.android/build-cache/b116fb4f933c44a8beef2109ecbc464c601b69d6/output/assets"/></dataSet><dataSet config="main"><source path="/home/rmf/ros2_android_ws/src/ros2_java/rmf_android/src/main/assets"/><source path="/home/rmf/ros2_android_ws/src/ros2_java/rmf_android/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/home/rmf/ros2_android_ws/src/ros2_java/rmf_android/src/debug/assets"/></dataSet></merger>

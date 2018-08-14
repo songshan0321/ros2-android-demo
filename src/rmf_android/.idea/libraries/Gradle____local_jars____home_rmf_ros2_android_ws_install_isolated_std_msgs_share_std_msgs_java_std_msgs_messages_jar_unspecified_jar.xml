@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: __local_jars__:/home/rmf/ros2_android_ws/install_isolated/std_msgs/share/std_msgs/java/std_msgs_messages.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../install_isolated/std_msgs/share/std_msgs/java/std_msgs_messages.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
