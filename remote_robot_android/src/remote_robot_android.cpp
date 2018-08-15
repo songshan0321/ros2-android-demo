@@ -14,23 +14,23 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
   // Serial write
 
   // Forward
-  if (strcmp("stop",data)){
+  if (strcmp("stop",data) == 0){
     ROS_INFO("Writing 0 to serial port");
     ser.write("0");
   }
-  else if (strcmp("right",data)){
+  else if (strcmp("right",data) == 0){
     ROS_INFO("Writing 1 to serial port");
     ser.write("1");
   }
-  else if (strcmp("left",data)){
+  else if (strcmp("left",data) == 0){
     ROS_INFO("Writing 2 to serial port");
     ser.write("2");
   }
-  else if (strcmp("forward",data)){
+  else if (strcmp("forward",data) == 0){
     ROS_INFO("Writing 3 to serial port");
     ser.write("3");
   }
-  else if (strcmp("backward",data)){
+  else if (strcmp("backward",data) == 0){
     ROS_INFO("Writing 4 to serial port");
     ser.write("4");
   }

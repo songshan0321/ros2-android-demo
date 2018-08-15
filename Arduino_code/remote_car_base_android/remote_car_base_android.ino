@@ -117,6 +117,11 @@ void loop() {
     else if (incomingByte == 3){
       state = 3;
     }
+    
+    // Backward
+    else if (incomingByte == 4){
+      state = 4;
+    }
     else{
       Serial.print("Invalid Input: ");
       Serial.print(incomingByte);
@@ -143,6 +148,10 @@ void loop() {
       // Forward
       if (state == 3){
         forward(80);
+      }
+      
+      if (state == 4){
+        backward(80);
       }
     }
     

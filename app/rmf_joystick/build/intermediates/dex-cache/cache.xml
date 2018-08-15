@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/rmf/github/ROS2_Android_App/app/rmf_joystick/libs/virtual-joystick-android/virtualjoystick/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3ea6b83540218e034149e9f1314a3fc5db64c2fc">
+        <dex dex="/home/rmf/github/ROS2_Android_App/app/rmf_joystick/build/intermediates/pre-dexed/debug/classes_16f5fc33165bf276e4bdc81b5fcdd5e1679a3c02.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/rmf/ros2_android_ws/install_isolated/std_msgs/share/std_msgs/java/std_msgs_messages.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2e46868e4d6a54f447ae9d76717937ccf117c6bf">
+        <dex dex="/home/rmf/github/ROS2_Android_App/app/rmf_joystick/build/intermediates/pre-dexed/debug/std_msgs_messages_09d3dde536c4ae029b516665fb17c2af1e3a2b5b.jar" />
+    </item>
+
+</items>
