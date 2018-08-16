@@ -1,7 +1,10 @@
 #include "ros/ros.h"
 #include <serial/serial.h>
 #include "std_msgs/String.h"
+#include "std_msgs/Int16.h"
 #include <string>
+#include <iostream>
+#include <sstream>
 
 serial::Serial ser;
 
@@ -41,10 +44,10 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "remote_robot_android");
+  ros::init(argc, argv, "base_controller");
   ros::NodeHandle n;
-  ros::Subscriber sub = n.subscribe("RMFChatter", 1000, chatterCallback);
-  ros::Publisher read_pub = n.advertise<std_msgs::String>("read", 1000);
+  ros::Subscriber sub = n.subscribe("cmd_vel", 1000, chatterCallback);
+  ros::Publisher pub = n.advertise<std_msgs::Int16>("ldr_value", 1000);
 
   // Open serial port 
   try
@@ -73,11 +76,21 @@ int main(int argc, char **argv)
         ros::spinOnce();
 
         if(ser.available()){
-            ROS_INFO_STREAM("Reading from serial port");
-            std_msgs::String result;
-            result.data = ser.read(ser.available());
-            ROS_INFO_STREAM("Read: " << result.data);
-            read_pub.publish(result);
+            // ROS_INFO_STREAM("Reading from serial port");
+            std_msgs::Int16 value;
+            std::string strValue;
+            std::stringstream ss;
+
+            strValue = ser.read(ser.available());
+            ss.clear();
+            ss.str("");
+            ss.str(strValue);
+            ss >> value.data;
+            ROS_INFO_STREAM("Sensor value: " << value.data);
+
+            if (value.data != 0){ // ignore '0' data
+              pub.publish(value);
+            }
         }
         loop_rate.sleep();
     }

@@ -12,6 +12,9 @@ android {
     minSdkVersion 21
     targetSdkVersion 25
   }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 buildscript {
@@ -37,6 +40,6 @@ repositories {
    mavenCentral()
 }
 
-dependencies{
-    compile project(':virtualjoystick');
+dependencies {
+  compile project(':virtualjoystick')
 }

@@ -3,9 +3,9 @@
       package="org.ros2.examples.android.rmfJoystick"
       android:versionCode="1"
       android:versionName="1.0">
-    <application android:label="RMF Joystick" android:icon="@drawable/ic_launcher">
+    <application android:label="RMF ROS2 Controller" android:icon="@drawable/ic_launcher">
         <activity android:name="rmfActivity"
-                  android:label="RMF Joystick">
+                  android:label="RMF ROS2 Controller">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

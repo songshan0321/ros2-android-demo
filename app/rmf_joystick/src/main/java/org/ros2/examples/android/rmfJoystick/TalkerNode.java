@@ -23,15 +23,15 @@ import org.ros2.rcljava.node.BaseComposableNode;
 import org.ros2.rcljava.publisher.Publisher;
 import org.ros2.rcljava.timer.WallTimer;
 
-public class rmfNode extends BaseComposableNode {
+public class TalkerNode extends BaseComposableNode {
 
-  private static String logtag = rmfNode.class.getName();
+  private static String logtag = TalkerNode.class.getName();
 
   private final String topic;
 
   private Publisher<std_msgs.msg.String> publisher;
 
-  public rmfNode(final String name, final String topic) {
+  public TalkerNode(final String name, final String topic) {
     super(name);
     this.topic = topic;
     this.publisher = this.node.<std_msgs.msg.String>createPublisher(
@@ -39,32 +39,32 @@ public class rmfNode extends BaseComposableNode {
   }
 
   public void left() {
-    Log.d(logtag, "rmfNode::left()");
+    Log.d(logtag, "TalkerNode::left()");
     std_msgs.msg.String msg = new std_msgs.msg.String();
     msg.setData("left");
     this.publisher.publish(msg);
   }
 
   public void right() {
-    Log.d(logtag, "rmfNode::right()");
+    Log.d(logtag, "TalkerNode::right()");
     std_msgs.msg.String msg = new std_msgs.msg.String();
     msg.setData("right");
     this.publisher.publish(msg);
   }
   public void forward() {
-    Log.d(logtag, "rmfNode::forward()");
+    Log.d(logtag, "TalkerNode::forward()");
     std_msgs.msg.String msg = new std_msgs.msg.String();
     msg.setData("forward");
     this.publisher.publish(msg);
   }
   public void backward() {
-    Log.d(logtag, "rmfNode::backward()");
+    Log.d(logtag, "TalkerNode::backward()");
     std_msgs.msg.String msg = new std_msgs.msg.String();
     msg.setData("backward");
     this.publisher.publish(msg);
   }
   public void stop() {
-      Log.d(logtag, "rmfNode::stop()");
+      Log.d(logtag, "TalkerNode::stop()");
       std_msgs.msg.String msg = new std_msgs.msg.String();
       msg.setData("stop");
       this.publisher.publish(msg);

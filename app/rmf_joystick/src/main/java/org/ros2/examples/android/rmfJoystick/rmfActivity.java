@@ -16,10 +16,11 @@
 package org.ros2.examples.android.rmfJoystick;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
+import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,7 +32,11 @@ import io.github.controlwear.virtual.joystick.android.JoystickView;
 
 public class rmfActivity extends ROSActivity {
 
-  private rmfNode rmfNode;
+  private TalkerNode talkerNode;
+
+  private ListenerNode listenerNode;
+
+  private TextView listenerView;
 
   private static String logtag = rmfActivity.class.getName();
 
@@ -45,11 +50,19 @@ public class rmfActivity extends ROSActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
 
+    listenerView = (TextView)findViewById(R.id.listenerView);
+    listenerView.setMovementMethod(new ScrollingMovementMethod());
 
     RCLJava.rclJavaInit();
 
-    // Start a ROS2 node
-    rmfNode = new rmfNode("android_rmf_node", "RMFChatter");
+    // Start a ROS2 publisher node
+    talkerNode = new TalkerNode("teleop_twist_joy", "cmd_vel");
+
+    // Start a ROS2 subscriber node
+    listenerNode = new ListenerNode("ldr_listener", "ldr_value", listenerView);
+
+    // Start listening to /ldr_value
+    getExecutor().addNode(listenerNode);
 
     JoystickView joystick = (JoystickView) findViewById(R.id.joystickView);
     joystick.setOnMoveListener(new JoystickView.OnMoveListener() {
@@ -77,9 +90,9 @@ public class rmfActivity extends ROSActivity {
         }
 
         if (preState != state){
-          getExecutor().addNode(rmfNode);
+          getExecutor().addNode(talkerNode);
           move(state);
-          getExecutor().removeNode(rmfNode);
+          getExecutor().removeNode(talkerNode);
         }
       }
     });
@@ -87,22 +100,22 @@ public class rmfActivity extends ROSActivity {
   }
   private void move(String direction){
     if (direction == "left"){
-      rmfNode.left();
+      talkerNode.left();
     }
     else if (direction == "right"){
-      rmfNode.right();
+      talkerNode.right();
     }
     else if (direction == "forward"){
-      rmfNode.forward();
+      talkerNode.forward();
     }
     else if (direction == "backward"){
-      rmfNode.backward();
+      talkerNode.backward();
     }
     else if (direction == "stop"){
-      rmfNode.stop();
+      talkerNode.stop();
     }
     else{
       Log.d(logtag, "invalid direction msg");
     }
   }
-  }
+}

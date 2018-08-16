@@ -1,0 +1,8 @@
+name: ldr_gateway
+internal:
+  middleware: ros1
+external:
+  middleware: ros2
+routes:
+  outbound:
+    - { topic: /ldr_value, type: std_msgs/Int16 }

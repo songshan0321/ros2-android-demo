@@ -16,13 +16,13 @@ ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidMa
 application
 ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:6:5-14:19
 	android:label
-		ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:6:18-46
+		ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:6:18-53
 	android:icon
-		ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:6:47-83
+		ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:6:54-90
 activity#org.ros2.examples.android.rmfJoystick.rmfActivity
 ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:7:9-13:20
 	android:label
-		ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:8:19-47
+		ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:8:19-54
 	android:name
 		ADDED from /home/rmf/github/ROS2_Android_App/app/rmf_joystick/src/main/AndroidManifest.xml:7:19-45
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER

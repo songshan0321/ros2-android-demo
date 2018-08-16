@@ -11,20 +11,25 @@ git clone https://github.com/songshan0321/ROS2_Android_App.git
 git clone https://github.com/wjwwood/serial.git
 # Start catkin make
 cd ~/catkin_ws && catkin_make
+# Copy 2 yaml files into soss configs folder
+cp ROS2_Android_App/configs/android_ros2_ros1.yaml ~/rmf/src/soss/configs/android_ros2_ros1.yaml
+cp ROS2_Android_App/configs/android_ros1_ros2.yaml ~/rmf/src/soss/configs/android_ros1_ros2.yaml
 ```
 
-
-
-Download and install soss_demo on **server computer**,
+Manually add some msgs into **soss_msgs** yaml file, then rebuild SOSS:
 
 ```bash
-cd ~/ros2_android_ws/src
-git clone https://github.com/songshan0321/ROS2_Android_App.git
-# Copy a yaml file into soss configs folder
-cp ROS2_Android_App/configs/android_ros2_ros1.yaml ~/rmf/src/soss/configs/android_ros2_ros1.yaml
+echo " - std_msgs/Int16" >> ~/rmf/src/rmf/soss/interfaces.yaml
+cat ~/rmf/src/rmf/soss/interfaces.yaml
+cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
+# Added std_msgs/Int16 to SOSS successfully!
+
+echo " - geometry_msgs/Vector3" >> ~/rmf/src/rmf/soss/interfaces.yaml
+echo " - geometry_msgs/Twist" >> ~/rmf/src/rmf/soss/interfaces.yaml
+cat ~/rmf/src/rmf/soss/interfaces.yaml
+cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
+# Added geometry_msgs/Twist to SOSS successfully!
 ```
-
-
 
 ## Run Demo
 
@@ -43,12 +48,12 @@ Run subscriber on robot:
 ```bash
 . ~/catkin_ws/devel/setup.bash
 sudo chmod 777 /dev/ttyACM0
-roslaunch move_robot_android car.launch
+roslaunch remote_robot_android car.launch
 ```
 
 
 
-### Step2: translate ROS 2 messages to ROS 1 messages
+### Step2: translate ROS 2 to ROS 1 messages
 
 On another terminal, source the SOSS libraries and start a SOSS instance:
 
@@ -58,20 +63,31 @@ cd ~/rmf/src/soss/soss
 ./soss.py ../configs/android_ros2_ros1.yaml
 ```
 
+### Step3: translate ROS 1 to ROS 2 messages
+
+On another terminal, source the SOSS libraries and start a SOSS instance:
+
+```bash
+. ~/rmf/build/soss/setup.bash
+cd ~/rmf/src/soss/soss
+./soss.py ../configs/android_ros1_ros2.yaml
+```
 
 
-### Step3: Open RMFTool Android App on your phone
+
+### Step4: Open RMF Joystick Android App on your phone
 
 Start control robotcar. Have fun!
 
 
 
-### Step4: (Optional) Echo msg on RMFChatter
+### Step5: (Optional) Echo msgs
 
-On **server computer**, echo RMFChatter topic:
+On **server computer**, echo /cmd_vel & /ldr_value topic:
 
 ```bash
 . ~/rmf/build/ros2/install/setup.bash
-ros2 topic echo /RMFChatter
+ros2 topic echo /cmd_vel
+ros2 topic echo /ldr_value
 ```
 

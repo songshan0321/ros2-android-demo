@@ -1,8 +1,8 @@
-name: android_gateway
+name: cmd_vel_gateway
 internal:
   middleware: ros2
 external:
   middleware: ros1
 routes:
   outbound:
-    - { topic: /RMFChatter, type: std_msgs/String }
+    - { topic: /cmd_vel, type: std_msgs/String }
