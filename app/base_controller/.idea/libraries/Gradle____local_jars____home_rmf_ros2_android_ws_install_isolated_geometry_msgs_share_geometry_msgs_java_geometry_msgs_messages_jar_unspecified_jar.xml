@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: __local_jars__:/home/rmf/ros2_android_ws/install_isolated/geometry_msgs/share/geometry_msgs/java/geometry_msgs_messages.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/ros2_android_ws/install_isolated/geometry_msgs/share/geometry_msgs/java/geometry_msgs_messages.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
