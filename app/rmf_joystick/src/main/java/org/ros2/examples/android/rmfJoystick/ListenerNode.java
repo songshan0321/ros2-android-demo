@@ -20,21 +20,40 @@ import android.widget.TextView;
 import org.ros2.rcljava.node.BaseComposableNode;
 import org.ros2.rcljava.subscription.Subscription;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ListenerNode extends BaseComposableNode {
+
   private final String topic;
 
   private final TextView listenerView;
 
+  private final TextView dateView;
+
+  public Date dateobj = new Date();
+
   private Subscription<std_msgs.msg.Int16> subscriber;
 
   public ListenerNode(final String name, final String topic,
-                      final TextView listenerView) {
+                      final TextView listenerView, final TextView dateView) {
     super(name);
     this.topic = topic;
     this.listenerView = listenerView;
+    this.dateView = dateView;
     this.subscriber = this.node.<std_msgs.msg.Int16>createSubscription(
-        std_msgs.msg.Int16.class, this.topic, msg
-                    -> this.listenerView.setText(String.valueOf(msg.getData()))
+        std_msgs.msg.Int16.class, this.topic, msg -> update(msg.getData())
     );
   }
+
+  public void update(final int number){
+//      DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+      this.dateobj = new Date();
+      this.listenerView.setText(String.valueOf(number));
+//      this.dateView.setText("Active: " + df.format(dateobj));
+      this.dateView.setText("Active");
+  }
+
+
 }

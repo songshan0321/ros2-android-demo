@@ -16,17 +16,16 @@
 package org.ros2.examples.android.rmfJoystick;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Button;
-import android.widget.Toast;
 
 import org.ros2.rcljava.RCLJava;
 
 import org.ros2.android.activity.ROSActivity;
+
+import java.util.Date;
 
 import io.github.controlwear.virtual.joystick.android.JoystickView;
 
@@ -37,6 +36,8 @@ public class rmfActivity extends ROSActivity {
   private ListenerNode listenerNode;
 
   private TextView listenerView;
+
+  private TextView dateView;
 
   private static String logtag = rmfActivity.class.getName();
 
@@ -53,18 +54,38 @@ public class rmfActivity extends ROSActivity {
     listenerView = (TextView)findViewById(R.id.listenerView);
     listenerView.setMovementMethod(new ScrollingMovementMethod());
 
+    dateView = (TextView)findViewById(R.id.dateView);
+
+    JoystickView joystick = (JoystickView) findViewById(R.id.joystickView);
+
     RCLJava.rclJavaInit();
 
     // Start a ROS2 publisher node
     talkerNode = new TalkerNode("teleop_twist_joy", "cmd_vel");
 
     // Start a ROS2 subscriber node
-    listenerNode = new ListenerNode("ldr_listener", "ldr_value", listenerView);
+    listenerNode = new ListenerNode("ldr_listener", "ldr_value", listenerView, dateView);
 
     // Start listening to /ldr_value
     getExecutor().addNode(listenerNode);
 
-    JoystickView joystick = (JoystickView) findViewById(R.id.joystickView);
+    Handler handler = new Handler();
+
+    Runnable r=new Runnable() {
+        public void run() {
+            Date currentDate = new Date();
+            long updateTime = listenerNode.dateobj.getTime();
+            long currentTime = currentDate.getTime();
+            long diff = (currentTime - updateTime) / 1000 ;
+            if (diff > 3){
+                dateView.setText("Disconnected");
+            }
+            handler.postDelayed(this, 500);
+        }
+    };
+
+    handler.postDelayed(r, 500);
+
     joystick.setOnMoveListener(new JoystickView.OnMoveListener() {
       @Override
       public void onMove(int angle, int strength) {
@@ -72,7 +93,6 @@ public class rmfActivity extends ROSActivity {
         if(angle >= 315 && strength >= 25 || angle <45 && strength >= 25){
           state = "right";
         }
-
         else if(angle >= 45 && angle <135 && strength >= 25){
           state = "forward";
         }

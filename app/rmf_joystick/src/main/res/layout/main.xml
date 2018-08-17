@@ -43,4 +43,12 @@
         custom:JV_buttonSizeRatio="25%"
         custom:JV_fixedCenter="false" />
 
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listenerView"
+        android:layout_centerHorizontal="true"
+        android:text="Not Connected" />
+
 </RelativeLayout>

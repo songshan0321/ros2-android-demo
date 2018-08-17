@@ -12,6 +12,7 @@ int attr JV_enabled 0x7f010008
 int attr JV_fixedCenter 0x7f010005
 int drawable ic_launcher 0x7f020000
 int id both 0x7f060000
+int id dateView 0x7f060007
 int id horizontal 0x7f060001
 int id joystickView 0x7f060006
 int id ldrView 0x7f060004

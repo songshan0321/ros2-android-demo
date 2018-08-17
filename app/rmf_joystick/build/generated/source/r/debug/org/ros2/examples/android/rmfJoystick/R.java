@@ -120,6 +120,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int both=0x7f060000;
+        public static final int dateView=0x7f060007;
         public static final int horizontal=0x7f060001;
         public static final int joystickView=0x7f060006;
         public static final int ldrView=0x7f060004;

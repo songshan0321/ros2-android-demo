@@ -2,7 +2,7 @@
 
 ### Installation
 
-Download and install ROS2_Android_App on **robotcar's computer**,
+On **robotcar's computer**, download and install ROS2_Android_App:
 
 ```bash
 cd ~/catkin_ws/src
@@ -16,7 +16,7 @@ cp ROS2_Android_App/configs/android_ros2_ros1.yaml ~/rmf/src/soss/configs/androi
 cp ROS2_Android_App/configs/android_ros1_ros2.yaml ~/rmf/src/soss/configs/android_ros1_ros2.yaml
 ```
 
-Manually add some msgs into **soss_msgs** yaml file, then rebuild SOSS:
+Manually add required msgs into **soss_msgs** yaml file, then rebuild SOSS:
 
 ```bash
 echo " - std_msgs/Int16" >> ~/rmf/src/rmf/soss/interfaces.yaml
@@ -31,7 +31,31 @@ cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
 # Added geometry_msgs/Twist to SOSS successfully!
 ```
 
+On **server computer**, create a symlink of 'bringup.sh' at home page:
+
+```bash
+ln -s ~/github/ROS2_Android_App/bringup.sh ~/bringup.sh
+```
+
+
+
 ## Run Demo
+
+### ~Method 1~
+
+On **server computer**, 
+
+```bash
+./bringup [password] [user@host]
+```
+
+For example:
+
+```bash
+./bringup.sh password1234 david@192.168.1.1
+```
+
+### ~Method 2~
 
 ### Step1: Launch remote robot car
 
@@ -47,7 +71,7 @@ Run subscriber on robot:
 
 ```bash
 . ~/catkin_ws/devel/setup.bash
-sudo chmod 777 /dev/ttyACM0
+echo rmf1234 | sudo -S chmod 777 /dev/ttyACM0
 roslaunch remote_robot_android car.launch
 ```
 
