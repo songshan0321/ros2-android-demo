@@ -26,9 +26,15 @@ import org.ros2.rcljava.timer.WallTimer;
 public class BaseControllerNode extends BaseComposableNode {
 
   private double linearVelX = 0.0;
+  private double linearVelY = 0.0;
+  private double linearVelZ = 0.0;
+  private double angVelX = 0.0;
+  private double angVelY = 0.0;
   private double angVelZ = 0.0;
-  private geometry_msgs.msg.Vector3 linear;
-  private geometry_msgs.msg.Vector3 angular;
+  private geometry_msgs.msg.Vector3 linear = new geometry_msgs.msg.Vector3();
+  private geometry_msgs.msg.Vector3 angular = new geometry_msgs.msg.Vector3();
+  private double maxAngVel = 0.5;
+  private double maxLinearVel = 0.5;
 
   private final String topic;
 //  private long lastUpdateTimeMs = 0;
@@ -49,7 +55,22 @@ public class BaseControllerNode extends BaseComposableNode {
   public void setTwistValues(double linearVelX, double angVelZ){
     this.linearVelX = linearVelX;
     this.angVelZ = angVelZ;
-    Log.d(logtag, "synchronized setting: (" + this.linearVelX + "," + this.angVelZ + ")");
+//    Log.d(logtag, "synchronized setting: (" + this.linearVelX + "," + this.angVelZ + ")");
+  }
+  public void setMaxLinearVel(double maxLinearVelIn){
+    this.maxLinearVel = maxLinearVelIn;
+  }
+
+  public double getMaxLinearVel(){
+    return this.maxLinearVel;
+  }
+
+  public void setMaxAngVel(double maxAngVelIn){
+    this.maxAngVel = maxAngVelIn;
+  }
+
+  public double getMaxAngVel(){
+    return this.maxAngVel;
   }
 
   // Transforms twist speeds (linear and angular) to twist msg.
@@ -57,10 +78,10 @@ public class BaseControllerNode extends BaseComposableNode {
     Log.d(logtag, "publish: (" + this.linearVelX + "," + this.angVelZ + ")");
     geometry_msgs.msg.Twist msg = new geometry_msgs.msg.Twist();
     this.linear.setX(this.linearVelX);
-    this.linear.setY(0.0);
-    this.linear.setZ(0.0);
-    this.angular.setX(0.0);
-    this.angular.setY(0.0);
+    this.linear.setY(this.linearVelY);
+    this.linear.setZ(this.linearVelZ);
+    this.angular.setX(this.angVelX);
+    this.angular.setY(this.angVelY);
     this.angular.setZ(this.angVelZ);
     msg.setLinear(linear);
     msg.setAngular(angular);

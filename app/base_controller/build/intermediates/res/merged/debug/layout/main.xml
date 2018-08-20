@@ -51,4 +51,32 @@
         android:layout_centerHorizontal="true"
         android:text="Not Connected" />
 
+    <TextView
+        android:id="@+id/directionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:text="0,0 , 0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="136dp"
+        android:text="  Linear , Angular" />
+
+    <Button
+        android:id="@+id/connectButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="211dp"
+        android:background="#ff5a58"
+        android:text="RECONNECT" />
+
 </RelativeLayout>

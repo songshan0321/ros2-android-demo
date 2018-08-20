@@ -19,7 +19,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ros2.rcljava.RCLJava;
 
@@ -32,12 +36,10 @@ import io.github.controlwear.virtual.joystick.android.JoystickView;
 public class BaseController extends ROSActivity {
 
   private BaseControllerNode baseControllerNode;
-
   private ListenerNode listenerNode;
-
   private TextView listenerView;
-
   private TextView dateView;
+  private TextView directionView;
 
   private static String logtag = BaseController.class.getName();
 
@@ -48,9 +50,11 @@ public class BaseController extends ROSActivity {
     setContentView(R.layout.main);
 
     listenerView = (TextView)findViewById(R.id.listenerView);
-    listenerView.setMovementMethod(new ScrollingMovementMethod());
-
+//    listenerView.setMovementMethod(new ScrollingMovementMethod());
     dateView = (TextView)findViewById(R.id.dateView);
+    directionView = (TextView)findViewById(R.id.directionView);
+    Button connectButton = (Button)findViewById(R.id.connectButton);
+    connectButton.setOnClickListener(connectListener);
 
     JoystickView joystick = (JoystickView) findViewById(R.id.joystickView);
 
@@ -75,6 +79,7 @@ public class BaseController extends ROSActivity {
             long diff = (currentTime - updateTime) / 1000 ;
             if (diff > 3){
                 dateView.setText("Disconnected");
+                listenerView.setText("Unknown");
             }
             handler.postDelayed(this, 500);
         }
@@ -85,32 +90,68 @@ public class BaseController extends ROSActivity {
     joystick.setOnMoveListener(new JoystickView.OnMoveListener() {
       @Override
       public void onMove(int angle, int strength) {
-        if(angle >= 315 && strength >= 25 || angle <45 && strength >= 25){
-          baseControllerNode.setTwistValues(0.0,-0.5); // right
+        int initAng = 23;
+        int deltaAng = 45;
+        double maxLinear = 0.5;
+        double maxAng = 0.5;
+        double linearVel = 0.0;
+        double angVel = 0.0;
+
+        if(angle >= initAng + 7*deltaAng && strength >= 25 || angle < initAng && strength >= 25){
+          // R
+          linearVel = 0.0;
+          angVel = -strength/100.0 * maxAng;
         }
-        else if(angle >= 45 && angle <135 && strength >= 25){
-          baseControllerNode.setTwistValues(0.5,0.0); // forward
+        else if(angle >= initAng && angle < initAng + deltaAng && strength >= 25){
+          // RF
+          linearVel = strength/100.0 * maxLinear;
+          angVel = -strength/100.0 * maxAng;
         }
-        else if(angle >= 135 && angle < 225 && strength >= 25){
-          baseControllerNode.setTwistValues(0.0,0.5); // left
+        else if(angle >= initAng + deltaAng && angle < initAng + 2*deltaAng && strength >= 25){
+          // F
+          linearVel = strength/100.0 * maxLinear;
+          angVel = 0.0;
         }
-        else if(angle >= 225 && angle <315 && strength >= 25){
-          baseControllerNode.setTwistValues(-0.5,0.0); // backward
+        else if(angle >= initAng + 2*deltaAng && angle < initAng + 3*deltaAng && strength >= 25){
+          // LF
+          linearVel = strength/100.0 * maxLinear;
+          angVel = strength/100.0 * maxAng;
+        }
+        else if(angle >= initAng + 3*deltaAng && angle < initAng + 4*deltaAng && strength >= 25){
+          // L
+          linearVel = 0.0;
+          angVel = strength/100.0 * maxAng;
+        }
+        else if(angle >= initAng + 4*deltaAng && angle < initAng + 5*deltaAng && strength >= 25){
+          // LB
+          linearVel = -strength/100.0 * maxLinear;
+          angVel = strength/100.0 * maxAng;
+        }
+        else if(angle >= initAng + 5*deltaAng && angle < initAng + 6*deltaAng && strength >= 25){
+          // B
+          linearVel = -strength/100.0 * maxLinear;
+          angVel = 0.0;
+        }
+        else if(angle >= initAng + 6*deltaAng && angle < initAng + 7*deltaAng && strength >= 25){
+          // RB
+          linearVel = -strength/100.0 * maxLinear;
+          angVel = -strength/100.0 * maxAng;
         }
         else if(strength < 25){
-          baseControllerNode.setTwistValues(0.0,0.0); // stop
+          // Stop
+          linearVel = 0.0;
+          angVel = 0.0;
         }
-        else{
-          baseControllerNode.setTwistValues(0.0,0.5); // stop
-        }
+        baseControllerNode.setTwistValues(linearVel,angVel);
+        directionView.setText(String.valueOf(linearVel) + " , " + String.valueOf(angVel));
 
-        getExecutor().addNode(baseControllerNode);
-        baseControllerNode.pubTwist();
-        getExecutor().removeNode(baseControllerNode);
+//        getExecutor().addNode(baseControllerNode);
+//        baseControllerNode.pubTwist();
+//        getExecutor().removeNode(baseControllerNode);
         }
     });
 
-    // Publish every 200 millisecond
+    // Publish twist msg every 200 millisecond
     Handler pubRoutine = new Handler();
     Runnable r2=new Runnable() {
       public void run() {
@@ -118,10 +159,31 @@ public class BaseController extends ROSActivity {
         getExecutor().addNode(baseControllerNode);
         baseControllerNode.pubTwist();
         getExecutor().removeNode(baseControllerNode);
-        pubRoutine.postDelayed(this, 500);
+        pubRoutine.postDelayed(this, 200);
       }
     };
-    pubRoutine.postDelayed(r2, 500);
-
+    pubRoutine.postDelayed(r2, 200);
   }
+
+  private OnClickListener connectListener = new OnClickListener() {
+    public void onClick(final View view) {
+      Log.d(logtag, "onClick() called - Reconnect");
+      Toast
+              .makeText(BaseController.this, "Trying to reconnect",
+                      Toast.LENGTH_LONG)
+              .show();
+
+      // Kill nodes
+      baseControllerNode = null;
+      listenerNode = null;
+      // Start a ROS2 publisher node
+      baseControllerNode = new BaseControllerNode("teleop_twist_joy", "cmd_vel");
+      // Start a ROS2 subscriber node
+      listenerNode = new ListenerNode("ldr_listener", "ldr_value", listenerView, dateView);
+
+      // Start listening to /ldr_value
+      getExecutor().addNode(listenerNode);
+
+    }
+  };
 }
