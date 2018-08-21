@@ -15,13 +15,15 @@
 
 package org.ros2.examples.android.baseController;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.method.ScrollingMovementMethod;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ public class BaseController extends ROSActivity {
   private TextView listenerView;
   private TextView dateView;
   private TextView directionView;
+  private TextView limitView;
 
   private static String logtag = BaseController.class.getName();
 
@@ -53,8 +56,33 @@ public class BaseController extends ROSActivity {
 //    listenerView.setMovementMethod(new ScrollingMovementMethod());
     dateView = (TextView)findViewById(R.id.dateView);
     directionView = (TextView)findViewById(R.id.directionView);
+    limitView = (TextView)findViewById(R.id.limitView);
     Button connectButton = (Button)findViewById(R.id.connectButton);
     connectButton.setOnClickListener(connectListener);
+
+    SeekBar maxSpeedBar = (SeekBar) findViewById(R.id.maxSpeedBar);
+
+    maxSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+      int progressChangedValue = 500;
+
+      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+          progressChangedValue = progress;
+          limitView.setText(String.valueOf(progressChangedValue));
+          double maxLinearVel = progressChangedValue / 100.0;
+          baseControllerNode.setMaxLinearVel(maxLinearVel);
+          baseControllerNode.setMaxAngVel(maxLinearVel);
+      }
+
+      public void onStartTrackingTouch(SeekBar seekBar) {
+          // TODO Auto-generated method stub
+      }
+
+      public void onStopTrackingTouch(SeekBar seekBar) {
+          Toast.makeText(BaseController.this, "Max speed is updated:" + progressChangedValue,
+                  Toast.LENGTH_SHORT).show();
+      }
+    });
+
 
     JoystickView joystick = (JoystickView) findViewById(R.id.joystickView);
 
@@ -92,8 +120,8 @@ public class BaseController extends ROSActivity {
       public void onMove(int angle, int strength) {
         int initAng = 23;
         int deltaAng = 45;
-        double maxLinear = 0.5;
-        double maxAng = 0.5;
+        double maxLinear = baseControllerNode.getMaxLinearVel();
+        double maxAng = baseControllerNode.getMaxAngVel();
         double linearVel = 0.0;
         double angVel = 0.0;
 
@@ -143,7 +171,7 @@ public class BaseController extends ROSActivity {
           angVel = 0.0;
         }
         baseControllerNode.setTwistValues(linearVel,angVel);
-        directionView.setText(String.valueOf(linearVel) + " , " + String.valueOf(angVel));
+        directionView.setText(String.format("%.2f",linearVel) + " , " + String.format("%.2f",angVel));
 
 //        getExecutor().addNode(baseControllerNode);
 //        baseControllerNode.pubTwist();

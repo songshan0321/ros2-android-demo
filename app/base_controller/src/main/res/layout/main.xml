@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="17dp"
         android:contentDescription="Value from LDR sensor"
         android:text="Light Intensity"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
@@ -23,7 +23,7 @@
         android:layout_height="44dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="49dp"
         android:text="Unknown"
         android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
@@ -63,9 +63,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/maxSpeedBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="136dp"
         android:text="  Linear , Angular" />
 
     <Button
@@ -75,8 +74,34 @@
         android:layout_height="29dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="211dp"
+        android:layout_marginTop="232dp"
         android:background="#ff5a58"
         android:text="RECONNECT" />
+
+    <SeekBar
+        android:id="@+id/maxSpeedBar"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/limitView"
+        android:layout_centerHorizontal="true"
+        android:max="100"
+        android:progress="50" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="124dp"
+        android:text="Speed Limit:" />
+
+    <TextView
+        android:id="@+id/limitView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:text="50" />
 
 </RelativeLayout>

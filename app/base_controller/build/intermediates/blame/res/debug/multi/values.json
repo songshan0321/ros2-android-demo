@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/home/rmf/github/ROS2_Android_App/app/base_controller/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+        "outputFile": "/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 878
                 },
                 "from": {
-                    "file": "/home/rmf/github/ROS2_Android_App/app/base_controller/src/main/res/values/strings.xml",
+                    "file": "/home/rmf/github/ros2-android-demo/app/base_controller/src/main/res/values/strings.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

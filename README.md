@@ -1,13 +1,13 @@
-## ROS2_Android_App
+# ros2-android-demo
 
 ### Installation
 
-On **robotcar's computer**, download and install ROS2_Android_App:
+On **robotcar's computer**, download and install ros2-android-demo:
 
 ```bash
 cd ~/catkin_ws/src
-git clone https://github.com/songshan0321/ROS2_Android_App.git
-# install serial package for robot if you do not have
+git clone https://github.com/songshan0321/ros2-android-demo.git
+# install serial package as dependencies
 git clone https://github.com/wjwwood/serial.git
 # Start catkin make
 cd ~/catkin_ws && catkin_make
@@ -34,7 +34,7 @@ cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
 On **server computer**, create a symlink of 'bringup.sh' at home page:
 
 ```bash
-ln -s ~/github/ROS2_Android_App/bringup.sh ~/bringup.sh
+ln -s ~/github/ros2-android-demo/bringup.sh ~/bringup.sh
 ```
 
 
@@ -99,9 +99,9 @@ cd ~/rmf/src/soss/soss
 
 
 
-### Step4: Open RMF Joystick Android App on your phone
+### Step4: Open ROS2 Controller App on your phone
 
-Start control robotcar. Have fun!
+Start control your robot. Have fun!
 
 
 

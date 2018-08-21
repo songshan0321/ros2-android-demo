@@ -120,14 +120,17 @@ containing a value of this type.
     }
     public static final class id {
         public static final int both=0x7f060000;
-        public static final int connectButton=0x7f06000a;
+        public static final int connectButton=0x7f06000b;
         public static final int dateView=0x7f060007;
         public static final int directionView=0x7f060008;
         public static final int horizontal=0x7f060001;
         public static final int joystickView=0x7f060006;
         public static final int ldrView=0x7f060004;
+        public static final int limitView=0x7f06000c;
         public static final int listenerView=0x7f060005;
+        public static final int maxSpeedBar=0x7f06000a;
         public static final int parent=0x7f060003;
+        public static final int textView=0x7f06000d;
         public static final int textView2=0x7f060009;
         public static final int vertical=0x7f060002;
     }
