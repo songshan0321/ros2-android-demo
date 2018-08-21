@@ -1,3 +1,0 @@
-<launch>
-  <node name="move_robot_android" pkg="move_robot_android" type="move_robot_android" />
-</launch>

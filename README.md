@@ -1,5 +1,9 @@
 # ros2-android-demo
 
+
+
+<img src="pics/GUI.jpg" width="300">
+
 ### Installation
 
 On **robotcar's computer**, download and install ros2-android-demo:
@@ -29,19 +33,23 @@ echo " - geometry_msgs/Twist" >> ~/rmf/src/rmf/soss/interfaces.yaml
 cat ~/rmf/src/rmf/soss/interfaces.yaml
 cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
 # Added geometry_msgs/Twist to SOSS successfully!
+# Finish!
 ```
 
-On **server computer**, create a symlink of 'bringup.sh' at home page:
+On **server computer**, create a symlink of [bringup.sh](bringup.sh) at root directory:
 
 ```bash
+git clone https://github.com/songshan0321/ros2-android-demo.git
 ln -s ~/github/ros2-android-demo/bringup.sh ~/bringup.sh
 ```
+
+---
 
 
 
 ## Run Demo
 
-### ~Method 1~
+### Method 1: 
 
 On **server computer**, 
 
@@ -55,17 +63,17 @@ For example:
 ./bringup.sh password1234 david@192.168.1.1
 ```
 
-### ~Method 2~
+
+
+
+
+---
+
+### Method 2:
 
 ### Step1: Launch remote robot car
 
-On **robot's computer** (10.10.1.206), 
-
-SSH into robot's computer:
-
-```bash
-ssh demo@10.10.7.186
-```
+On **robot's computer**, 
 
 Run subscriber on robot:
 
@@ -101,7 +109,7 @@ cd ~/rmf/src/soss/soss
 
 ### Step4: Open ROS2 Controller App on your phone
 
-Start control your robot. Have fun!
+Start control your robot by Android App from mobile. Have fun!
 
 
 
