@@ -4,6 +4,7 @@ project(remote_robot_android)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  geometry_msgs
   serial
   roslaunch
 )
@@ -14,7 +15,7 @@ roslaunch_add_file_check(launch)
 catkin_package(
   INCLUDE_DIRS src
   # LIBRARIES blah
-  CATKIN_DEPENDS roscpp std_msgs rmf_msgs serial
+  CATKIN_DEPENDS roscpp std_msgs geometry_msgs rmf_msgs serial
   DEPENDS system_lib
 )
 

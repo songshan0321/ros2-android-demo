@@ -1,4 +1,0 @@
-#Fri Aug 17 15:08:37 MYT 2018
-base.0=/home/rmf/github/ROS2_Android_App/app/rmf_joystick/build/intermediates/transforms/dex/debug/folders/1000/1f/main
-renamed.0=classes.dex
-file.0=/home/rmf/github/ROS2_Android_App/app/rmf_joystick/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

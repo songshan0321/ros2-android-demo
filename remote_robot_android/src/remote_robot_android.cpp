@@ -1,6 +1,8 @@
 #include "ros/ros.h"
 #include <serial/serial.h>
 #include "std_msgs/String.h"
+#include "geometry_msgs/Vector3.h"
+#include "geometry_msgs/Twist.h"
 #include "std_msgs/Int16.h"
 #include <string>
 #include <iostream>
@@ -8,38 +10,21 @@
 
 serial::Serial ser;
 
-void chatterCallback(const std_msgs::String::ConstPtr& msg)
+void chatterCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
   // Read in msg
-  const char* data = msg->data.c_str();
-  //ROS_INFO("I heard: [%s]", data);
+  double linearVelX = msg->linear.x;
+  double angVelZ = msg->angular.z;
+  std::string motor_msg;
+  std::stringstream ss_linear;
+  std::stringstream ss_angular;
 
   // Serial write
-
-  // Forward
-  if (strcmp("stop",data) == 0){
-    ROS_INFO("Writing 0 to serial port");
-    ser.write("0");
-  }
-  else if (strcmp("right",data) == 0){
-    ROS_INFO("Writing 1 to serial port");
-    ser.write("1");
-  }
-  else if (strcmp("left",data) == 0){
-    ROS_INFO("Writing 2 to serial port");
-    ser.write("2");
-  }
-  else if (strcmp("forward",data) == 0){
-    ROS_INFO("Writing 3 to serial port");
-    ser.write("3");
-  }
-  else if (strcmp("backward",data) == 0){
-    ROS_INFO("Writing 4 to serial port");
-    ser.write("4");
-  }
-  else{
-    ROS_INFO("Invalid direction msg.");
-  }
+  ss_linear << linearVelX;
+  ss_angular << angVelZ;
+  motor_msg = ss_linear.str() + "," +ss_angular.str() + "\n";
+  ser.write(motor_msg);
+  ROS_INFO_STREAM(motor_msg);
 }
 
 int main(int argc, char **argv)
@@ -70,7 +55,7 @@ int main(int argc, char **argv)
       return -1;
   }
 
-    ros::Rate loop_rate(5);
+    ros::Rate loop_rate(50);
     while(ros::ok()){
 
         ros::spinOnce();
@@ -86,9 +71,9 @@ int main(int argc, char **argv)
             ss.str("");
             ss.str(strValue);
             ss >> value.data;
-            ROS_INFO_STREAM("Sensor value: " << value.data);
 
             if (value.data != 0){ // ignore '0' data
+              ROS_INFO_STREAM("Sensor value: " << value.data);
               pub.publish(value);
             }
         }
