@@ -2,7 +2,7 @@
 
 #################
 
-# usage:  ./bringup [password] [user@host]
+# usage:  ./bringup.sh [password] [user@host]
 
 #################
 

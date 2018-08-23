@@ -15,10 +15,8 @@
 
 package org.ros2.examples.android.baseController;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -82,7 +80,6 @@ public class BaseController extends ROSActivity {
                   Toast.LENGTH_SHORT).show();
       }
     });
-
 
     JoystickView joystick = (JoystickView) findViewById(R.id.joystickView);
 

@@ -15,13 +15,10 @@
 
 package org.ros2.examples.android.baseController;
 
-import java.util.concurrent.TimeUnit;
-
 import android.util.Log;
 
 import org.ros2.rcljava.node.BaseComposableNode;
 import org.ros2.rcljava.publisher.Publisher;
-import org.ros2.rcljava.timer.WallTimer;
 
 public class BaseControllerNode extends BaseComposableNode {
 

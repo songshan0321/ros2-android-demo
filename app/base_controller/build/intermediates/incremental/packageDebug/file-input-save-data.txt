@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Aug 21 14:59:40 MYT 2018
+#Thu Aug 23 11:47:11 MYT 2018
 210.set=NATIVE_RESOURCE
 14.set=NATIVE_RESOURCE
 180.file=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/transforms/stripDebugSymbol/debug/folders/2000/1f/main/lib/armeabi-v7a/libgeometry_msgs_msg__point_stamped__jni__rosidl_typesupport_introspection_c.so
@@ -487,7 +487,7 @@ count=229
 194.base=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/transforms/stripDebugSymbol/debug/folders/2000/1f/main
 192.set=NATIVE_RESOURCE
 55.set=NATIVE_RESOURCE
-190.file=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher.png
+190.file=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/res/resources-debug.ap_/res/drawable-xhdpi-v4/ic_launcher.png
 159.set=NATIVE_RESOURCE
 212.set=NATIVE_RESOURCE
 16.set=NATIVE_RESOURCE
@@ -549,7 +549,7 @@ count=229
 195.base=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/transforms/stripDebugSymbol/debug/folders/2000/1f/main
 170.base=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/transforms/stripDebugSymbol/debug/folders/2000/1f/main
 65.set=NATIVE_RESOURCE
-191.file=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/res/resources-debug.ap_/res/drawable-xhdpi-v4/ic_launcher.png
+191.file=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher.png
 7.set=NATIVE_RESOURCE
 169.set=NATIVE_RESOURCE
 222.set=ANDROID_RESOURCE

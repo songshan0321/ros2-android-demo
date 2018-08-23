@@ -23,17 +23,10 @@ cp ROS2_Android_App/configs/android_ros1_ros2.yaml ~/rmf/src/soss/configs/androi
 Manually add required msgs into **soss_msgs** yaml file, then rebuild SOSS:
 
 ```bash
-echo " - std_msgs/Int16" >> ~/rmf/src/rmf/soss/interfaces.yaml
+echo -e " - std_msgs/Int16 \n - geometry_msgs/Vector3 \n - geometry_msgs/Twist" >> ~/rmf/src/rmf/soss/interfaces.yaml
 cat ~/rmf/src/rmf/soss/interfaces.yaml
 cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
-# Added std_msgs/Int16 to SOSS successfully!
-
-echo " - geometry_msgs/Vector3" >> ~/rmf/src/rmf/soss/interfaces.yaml
-echo " - geometry_msgs/Twist" >> ~/rmf/src/rmf/soss/interfaces.yaml
-cat ~/rmf/src/rmf/soss/interfaces.yaml
-cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
-# Added geometry_msgs/Twist to SOSS successfully!
-# Finish!
+# Added additional msgs to SOSS successfully!
 ```
 
 On **server computer**, create a symlink of [bringup.sh](bringup.sh) at root directory:
@@ -54,7 +47,7 @@ ln -s ~/github/ros2-android-demo/bringup.sh ~/bringup.sh
 On **server computer**, 
 
 ```bash
-./bringup [password] [user@host]
+./bringup.sh [password] [user@host]
 ```
 
 For example:

@@ -1,2 +1,2 @@
 include ':virtualjoystick'
-project(':virtualjoystick').projectDir = new File('libs/virtual-joystick-android/virtualjoystick')
+project(':virtualjoystick').projectDir = new File(settingsDir, 'libs/virtual-joystick-android/virtualjoystick')

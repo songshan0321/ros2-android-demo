@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rmf_android</name>
+  <name>base_controller</name>
   <version>0.0.0</version>
   <description>RMF Android tool that exercises the ROS2 API.</description>
-  <maintainer email="esteve@apache.org">Esteve Fernandez</maintainer>
+  <maintainer email="songshan_you@hotmailcomg">Esteve Fernandez</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
@@ -14,9 +14,11 @@
 
   <build_depend>rclandroid</build_depend>
   <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
 
   <exec_depend>rclandroid</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
 
   <export>
     <build_type>ament_gradle</build_type>
