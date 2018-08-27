@@ -1,8 +1,6 @@
 # ros2-android-demo
 
-
-
-<img src="pics/GUI.jpg" width="300">
+<img src="pics/ros2-android.jpg" width="300"><img src="pics/GUI.jpg" width="300">
 
 ### Installation
 
@@ -28,6 +26,19 @@ cat ~/rmf/src/rmf/soss/interfaces.yaml
 cd ~/rmf/src/rmf/scripts && ./generate_soss.sh
 # Added additional msgs to SOSS successfully!
 ```
+
+Install PlatformIO and upload compiled Arduino base code:
+
+```bash
+pip install -U platformio
+scp -r platformio/ demo@192.168.1.2:~/Desktop
+cd
+platformio run -e uno --target upload
+```
+
+
+
+
 
 On **server computer**, create a symlink of [bringup.sh](bringup.sh) at root directory:
 
