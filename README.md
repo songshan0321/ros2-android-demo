@@ -4,7 +4,39 @@
 
 ### Installation
 
-On **robotcar's computer**, download and install ros2-android-demo:
+### Method 1: 
+
+On **robot's computer**, install ros2-android-demo & run [demo_install.sh](scripts/demo_install):
+
+```bash
+cd ~/catkin_ws/src
+git clone https://github.com/songshan0321/ros2-android-demo.git
+cd ~/catkin_ws/src/ros2-android-demo/scripts
+./demo_install.sh
+```
+
+On **server computer**, create a symlink of [bringup.sh](scripts/bringup.sh) at root directory:
+
+```bash
+git clone https://github.com/songshan0321/ros2-android-demo.git
+ln -s ~/github/ros2-android-demo/scripts/bringup.sh ~/bringup.sh
+```
+
+On **server computer**, git clone virtual-joystick library:
+
+```bash
+cd ~/github/ros2-android-demo/app/base_controller
+mkdir libs
+git clone https://github.com/controlwear/virtual-joystick-android.git
+```
+
+
+
+------
+
+### Method 2:
+
+On **robot's computer**, download and install ros2-android-demo:
 
 ```bash
 cd ~/catkin_ws/src
@@ -14,8 +46,8 @@ git clone https://github.com/wjwwood/serial.git
 # Start catkin make
 cd ~/catkin_ws && catkin_make
 # Copy 2 yaml files into soss configs folder
-cp ROS2_Android_App/configs/android_ros2_ros1.yaml ~/rmf/src/soss/configs/android_ros2_ros1.yaml
-cp ROS2_Android_App/configs/android_ros1_ros2.yaml ~/rmf/src/soss/configs/android_ros1_ros2.yaml
+cp src/ros2-android-demo/configs/android_ros2_ros1.yaml ~/rmf/src/soss/configs/android_ros2_ros1.yaml
+cp src/ros2-android-demo/configs/android_ros1_ros2.yaml ~/rmf/src/soss/configs/android_ros1_ros2.yaml
 ```
 
 Manually add required msgs into **soss_msgs** yaml file, then rebuild SOSS:
@@ -31,20 +63,15 @@ Install PlatformIO and upload compiled Arduino base code:
 
 ```bash
 pip install -U platformio
-scp -r platformio/ demo@192.168.1.2:~/Desktop
-cd
+cd ~/catkin_ws/src/ros2-android-demo/platformio/car_base/
 platformio run -e uno --target upload
 ```
 
-
-
-
-
-On **server computer**, create a symlink of [bringup.sh](bringup.sh) at root directory:
+On **server computer**, create a symlink of [bringup.sh](scripts/bringup.sh) at root directory:
 
 ```bash
 git clone https://github.com/songshan0321/ros2-android-demo.git
-ln -s ~/github/ros2-android-demo/bringup.sh ~/bringup.sh
+ln -s ~/github/ros2-android-demo/scripts/bringup.sh ~/bringup.sh
 ```
 
 ---
