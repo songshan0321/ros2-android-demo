@@ -1,4 +1,0 @@
-#Thu Aug 23 11:47:10 MYT 2018
-base.0=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/transforms/dex/debug/folders/1000/1f/main
-renamed.0=classes.dex
-file.0=/home/rmf/github/ros2-android-demo/app/base_controller/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

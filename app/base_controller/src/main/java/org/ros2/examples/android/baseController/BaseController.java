@@ -90,7 +90,6 @@ public class BaseController extends ROSActivity {
 
     // Start a ROS2 subscriber node
     listenerNode = new ListenerNode("ldr_listener", "ldr_value", listenerView, dateView);
-
     // Start listening to /ldr_value
     getExecutor().addNode(listenerNode);
 

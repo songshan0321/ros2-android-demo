@@ -2,11 +2,17 @@
 
 <img src="pics/ros2-android.jpg" width="300"><img src="pics/GUI.jpg" width="300">
 
-### Installation
+### Block Diagram
+
+<img src="pics/diagram.png">
+
+
+
+### -Installation-
 
 ### Method 1: 
 
-On **robot's computer**, install ros2-android-demo & run [demo_install.sh](scripts/demo_install):
+On **robot's computer**, install ros2-android-demo & run [demo_install.sh](scripts/demo_install.sh):
 
 ```bash
 cd ~/catkin_ws/src
@@ -27,10 +33,8 @@ On **server computer**, git clone virtual-joystick library:
 ```bash
 cd ~/github/ros2-android-demo/app/base_controller
 mkdir libs
-git clone https://github.com/controlwear/virtual-joystick-android.git
+cd libs && git clone https://github.com/controlwear/virtual-joystick-android.git
 ```
-
-
 
 ------
 
@@ -76,27 +80,23 @@ ln -s ~/github/ros2-android-demo/scripts/bringup.sh ~/bringup.sh
 
 ---
 
+### Setup ros2-android-app project for compile
 
+Follow instruction from [ros2-android-app](https://github.com/songshan0321/ros2-android-app) to compile the project for further development.
+
+---
 
 ## Run Demo
 
 ### Method 1: 
 
-On **server computer**, 
+On **server computer**, bring up robot:
+
+Note: input user@host and password of robot's computer accordingly.
 
 ```bash
-./bringup.sh [password] [user@host]
+./bringup.sh
 ```
-
-For example:
-
-```bash
-./bringup.sh password1234 david@192.168.1.1
-```
-
-
-
-
 
 ---
 
@@ -153,4 +153,10 @@ On **server computer**, echo /cmd_vel & /ldr_value topic:
 ros2 topic echo /cmd_vel
 ros2 topic echo /ldr_value
 ```
+
+
+
+### Future Development
+
+
 

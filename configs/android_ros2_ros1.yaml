@@ -5,4 +5,4 @@ external:
   middleware: ros1
 routes:
   outbound:
-    - { topic: /cmd_vel, type: std_msgs/String }
+    - { topic: /cmd_vel, type: geometry_msgs/Twist }
